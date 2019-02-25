@@ -1,7 +1,6 @@
 package com.yurishchev.aem.tools;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,7 +31,7 @@ public class DependenciesGenerator {
         File rootFolder = new File(args[0]);
         if (rootFolder.exists() && rootFolder.isDirectory() && rootFolder.canRead()) {
             Collection<File> bundles = FileUtils.listFiles(rootFolder,
-                    FileFilterUtils.nameFileFilter(BUNDLE_FILE_NAME),
+                    TrueFileFilter.INSTANCE, //FileFilterUtils.nameFileFilter(BUNDLE_FILE_NAME),
                     TrueFileFilter.INSTANCE);
             DependenciesGenerator generator = new DependenciesGenerator();
             generator.processBundles(bundles);
